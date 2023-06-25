@@ -64,7 +64,7 @@ export const loadLanguageCompartment = async (
     }
     case 'clojure':
     case 'clojurescript': {
-      const { clojure } = await import('@codemirror/legacy-modes/mode/clojure')
+      const { clojure } = await import('lang-clojure-eval')
       return compartment.of(StreamLanguage.define(clojure))
     }
     case 'cobol': {
