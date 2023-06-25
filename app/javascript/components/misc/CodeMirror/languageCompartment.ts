@@ -7,6 +7,11 @@ export const loadLanguageCompartment = async (
   language: string
 ): Promise<Extension> => {
   switch (language) {
+    case 'clojure':
+    case 'clojurescript': {
+       const { clojure } = await import('lang-clojure-eval')
+       return compartment.of(clojure)
+    }
     case 'cpp': {
       const { cpp } = await import('@codemirror/lang-cpp')
       return compartment.of(cpp())
@@ -61,11 +66,6 @@ export const loadLanguageCompartment = async (
     case 'ceylon': {
       const { ceylon } = await import('@codemirror/legacy-modes/mode/clike')
       return compartment.of(StreamLanguage.define(ceylon))
-    }
-    case 'clojure':
-    case 'clojurescript': {
-      const { clojure } = await import('lang-clojure-eval')
-      return compartment.of(StreamLanguage.define(clojure))
     }
     case 'cobol': {
       const { cobol } = await import('@codemirror/legacy-modes/mode/cobol')
